@@ -5,6 +5,7 @@ from classroom import Classroom
 
 class BuildingChecker:
     def __init__(self, authorizor):
+        # Initializing variables
         self.authorizor = authorizor
         self.__admin = 'admin'
         self.__admin_pass = 'adminadmin'
@@ -13,17 +14,19 @@ class BuildingChecker:
         self.authorizor.permit_user('admin', self.__admin)
 
     def login(self):
-        # Log in
+        # For logging into any created user
         return self.authorizor.authenticator.login(input('Login: '),
                                                    input('Password: '))
 
     def check_building(self):
+        # Finding out adress and classrooms info
         username = self.authorizor.authenticator.logged_user
         if self.authorizor.check_permission('admin', username):
             for room in building.classrooms:
                 print(room)
 
     def add_classroom(self):
+        # For creating new Classroom variable
         username = self.authorizor.authenticator.logged_user
         if self.authorizor.check_permission('admin', username):
             classroom_name = input('Enter classroom name: ')
@@ -35,14 +38,14 @@ class BuildingChecker:
             building.classrooms.append(Classroom(classroom_number, classroom_capacity, classroom_equipment))
 
     def add_user(self):
-        # Add user
+        # For creating new user
         username = self.authorizor.authenticator.logged_user
         if self.authorizor.check_permission('admin', username):
             self.authorizor.authenticator.add_user(input('Enter login for new user: '),
                                                    input('Enter password for new user: '))
 
     def add_permition(self):
-        # Permit user
+        # For adding admin authority to any user
         username = self.authorizor.authenticator.logged_user
         if self.authorizor.check_permission('admin', username):
             self.authorizor.permit_user(input('Enter permision name: '),
