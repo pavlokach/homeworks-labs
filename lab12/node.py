@@ -7,15 +7,17 @@ linked structures.
 
 class Node(object):
 
-    def __init__(self, data, next = None):
+    def __init__(self, data, nexts = None):
         """Instantiates a Node with default next of None"""
         self.data = data
-        self.next = next
+        self.next = nexts
+    def __str__(self):
+        return str(self.data) + ' '
 
 class TwoWayNode(Node):
 
-    def __init__(self, data, previous = None, next = None):
-        Node.__init__(self, data, next)
+    def __init__(self, data, previous = None, nexts = None):
+        Node.__init__(self, data, nexts)
         self.previous = previous
 
 # Just an empty link
